@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { PedidoProps } from "@/types";
 import FormPedidos from "./FormPedidos";
+import { ActionsProps, RemoveProps } from "@/types";
+import CardPedidos from "./CardPedidos";
 
 export default function ListaPedidos(){
 	const [pedidos, setPedidos] = useState<PedidoProps[]>([]);
@@ -25,14 +27,18 @@ export default function ListaPedidos(){
 		setPedido({marca: '', modelo: '', placa: '', nome: '', tipoLavagem: ''})
 	}
 
-	const removerPedido = (index: number) => {
-		const novosPedidos = pedidos.filter((_,i) => i !== index);
+	const removerPedido = (placa: string) => {
+		let novosPedidos = pedidos
+		novosPedidos = novosPedidos.filter((e) => e.placa !== placa);
 		setPedidos(novosPedidos);
 	};		
+
 	return (
 		<div className="lista-pedidos">
-			<FormPedidos {...pedidos} add={adicionarPedido} capturar={capturarInput}/>
-			
+			<FormPedidos {...pedido} add={adicionarPedido} captura={capturarInput}/>
+			{pedidos.map((p, i) => (
+				<CardPedidos key={i} {...p} remove={removerPedido}/>
+			))}
 		</div>
 	)
 }

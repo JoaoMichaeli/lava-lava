@@ -1,10 +1,12 @@
 import { PedidoProps } from "@/types";
+import { ActionsProps } from "@/types";
 
-export default function FormPedidos({marca, modelo, placa, nome, tipoLavagem} : PedidoProps){
+
+export default function FormPedidos({marca, modelo, placa, nome, tipoLavagem, captura, add} : PedidoProps&ActionsProps){
 	return (
-		<div className="container" onSubmit={capturarInput}>
+		<div className="container" onSubmit={captura}>
 			<h2>Cadastrar Pedido</h2>
-			<form onSubmit={adicionarPedido} >
+			<form onSubmit={add} >
 				<input type="text" name="marca" placeholder="Marca" />
 				<input type="text" name="modelo" placeholder="Modelo" />
 				<input type="text" name="placa" placeholder="Placa" />
