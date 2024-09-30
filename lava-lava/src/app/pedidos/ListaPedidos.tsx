@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import { PedidoProps } from "@/types";
 import FormPedidos from "./FormPedidos";
